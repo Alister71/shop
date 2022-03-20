@@ -1,0 +1,15 @@
+<div>
+  <div>Products</div>
+    <ul>
+      <li *ngFor="let pr of products">
+        <ul>
+          <li>name: {{pr.name}}</li>
+          <li>description: {{pr.description}}</li>
+          <li>price: {{pr.price}}</li>
+          <li>category: {{pr.category}}</li>
+          <li>available: {{pr.isAvailable}}</li>
+        </ul>
+        <app-product></app-product>
+      </li>
+    </ul>
+</div>
