@@ -10,7 +10,7 @@ import {Product} from '../model/product';
 export class ProductListComponent implements OnInit {
   products: Array<Product>;
 
-  constructor(public productService: ProductsService) {
+  constructor(private productService: ProductsService) {
   }
 
   ngOnInit(): void {
