@@ -1,15 +1,17 @@
 <div *ngIf="cartNotEmpty(); else elseBlock">
-  <div>Carts</div>
-  <ul>
-    <li *ngFor="let cart of carts; trackBy: trackByItems">
-      <ul>
-        <li>name: {{cart.name}}</li>
-        <li>description: {{cart.description}}</li>
-        <li>price: {{cart.price}}</li>
-        <li>category: {{cart.category}}</li>
-      </ul>
-    </li>
-  </ul>
+  <div>Cart Items</div>
+  <div>
+    {{lastChange() | date:'medium'}}
+  </div>
+  <div>Total Cost: {{totalCost}}</div>
+  <div>Total Quantity: {{totalQuantity}}</div>
+  <app-cart-item
+    *ngFor="let cartItem of cartItems; trackBy: trackByItems"
+    [cartItem] = "cartItem"
+    (quantityDecrease)="onQuantityDecrease($event)"
+    (quantityIncrease)="onQuantityIncrease($event)"
+    (deleteItem)="onDeleteItem($event)"
+  ></app-cart-item>
   <section>
     <button class="btn btn-primary" (click)="onClearCart()">Clear Cart</button>
   </section>

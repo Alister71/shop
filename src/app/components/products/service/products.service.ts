@@ -6,9 +6,6 @@ import {Product} from '../model/product';
   providedIn: 'root'
 })
 export class ProductsService {
-  getProduct(): Product {
-    return new Product('product1', 'description1', 12, CategoryEnum.FOOD, true);
-  }
 
   getProducts(): Array<Product> {
     return [
