@@ -1,29 +1,52 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CartService} from '../service/cart.service';
-import {Cart} from '../model/cart';
+import {CartItem} from '../model/cartItem';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent implements OnInit {
-  carts: Array<Cart>;
+export class CartListComponent {
 
-  constructor(public cartService: CartService) {
+  constructor(private cartService: CartService) {
   }
 
-  ngOnInit(): void {
-    this.carts = this.cartService.getCarts();
+  get cartItems(): Array<CartItem> {
+    return this.cartService.items;
+  }
+
+  get totalQuantity(): number {
+    return this.cartService.totalQuantity;
+  }
+
+  get totalCost(): number {
+    return this.cartService.totalCost;
   }
 
   cartNotEmpty(): boolean {
-    return this.carts.length > 0;
+    return this.cartService.cartItemsNotEmpty();
   }
 
-  trackByItems(index: number, item: Cart): string { return item.name; }
+  trackByItems(index: number, item: CartItem): string { return item.name; }
 
   onClearCart(): void {
-    this.carts.length = 0;
+    this.cartService.clearCartItems();
+  }
+
+  onQuantityIncrease(cartItem: CartItem): void {
+    cartItem.quantity++;
+  }
+
+  onQuantityDecrease(cartItem: CartItem): void {
+    cartItem.quantity--;
+  }
+
+  onDeleteItem(cartItem: CartItem): void {
+    this.cartService.deleteItem(cartItem);
+  }
+
+  lastChange(): Date {
+    return new Date();
   }
 }

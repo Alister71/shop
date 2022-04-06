@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading" >Item in Cart</div>
+  <div class="panel-body">
+    <ul appHighlight>
+      <li>Name: {{cartItem.name}}</li>
+      <li>Description: {{cartItem.description}}</li>
+      <li>Price: {{cartItem.price}}</li>
+      <li>Category: {{cartItem.category}}</li>
+      <li>Quantity: {{cartItem.quantity}}</li>
+    </ul>
+    <button class="btn btn-primary" (click)="onQuantityIncrease(cartItem)">Increase Quantity</button>
+    <button class="btn btn-primary" (click)="onDeleteItem(cartItem)">Delete Item</button>
+    <button *ngIf="cartItem.quantity > 1" class="btn btn-primary" (click)="onQuantityDecrease(cartItem)">Decrease Quantity</button>
+  </div>
+</div>

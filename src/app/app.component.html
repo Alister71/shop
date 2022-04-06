@@ -1,6 +1,10 @@
-<h1>First Component</h1>
-<app-first></app-first>
-<h1>ProductList Component</h1>
-<app-product-list></app-product-list>
-<h1>Cart List</h1>
+<h1 #appTitle [ngClass]="{m_title:true}"></h1>
+<label>Owner: </label>
+<input type="text"
+       #ownerField
+       (keyup)="onSetValues(ownerField)"
+       [ngClass]="{m_title:true}"/>
+<h1 [ngClass]="{m_title:false}">Product list</h1>
+<app-product-list [owner]="owner"></app-product-list>
+<h1>Cart list</h1>
 <app-cart-list></app-cart-list>

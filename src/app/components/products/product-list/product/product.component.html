@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Product</div>
+  <div class="panel-body">
+    <ul>
+      <li>Name: {{product.name}}</li>
+      <li>Description: {{product.description}}</li>
+      <li>Price: {{product.price}}</li>
+      <li>Category: {{product.category}}</li>
+      <li>Available: {{product.isAvailable}}</li>
+    </ul>
+    <button *ngIf="product.isAvailable" class="btn btn-primary" (click)="onAddToCart(product)">Buy</button>
+  </div>
+</div>
