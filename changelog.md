@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * СartItemComponent was added, @Input(), @Output() decorators were used
 * onDeleteItem method was added
 * onQuantityIncrease/onQuantityDecrease methods were added
+* замечаний нет
 
 ### Changed
 * CartListComponent was modified
