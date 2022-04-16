@@ -13,7 +13,7 @@ export class CartListComponent {
   }
 
   get cartItems(): Array<CartItem> {
-    return this.cartService.items;
+    return this.cartService.getProducts;
   }
 
   get totalQuantity(): number {
@@ -25,13 +25,13 @@ export class CartListComponent {
   }
 
   cartNotEmpty(): boolean {
-    return this.cartService.cartItemsNotEmpty();
+    return !this.cartService.isEmptyCart();
   }
 
   trackByItems(index: number, item: CartItem): string { return item.name; }
 
   onClearCart(): void {
-    this.cartService.clearCartItems();
+    this.cartService.removeAllProducts();
   }
 
   onQuantityIncrease(cartItem: CartItem): void {

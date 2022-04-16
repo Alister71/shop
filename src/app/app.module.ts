@@ -7,20 +7,22 @@ import {CartModule} from './components/cart/cart.module';
 import {OrdersModule} from './components/orders/orders.module';
 import {ProductsModule} from './components/products/products.module';
 import {SharedModule} from './components/shared/shared.module';
+import {ChangeSizeDirective} from './shared/directives/change-size.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponent
+    FirstComponent,
+    ChangeSizeDirective
   ],
   imports: [
     BrowserModule,
     CartModule,
+    SharedModule,
     OrdersModule,
     ProductsModule,
     SharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
