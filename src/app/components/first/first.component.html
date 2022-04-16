@@ -1,9 +1,42 @@
-<div>
-  <ul>
-    <li>name: {{name}}</li>
-    <li>description: {{description}}</li>
-    <li>price: {{price}}</li>
-    <li>category: {{category}}</li>
-    <li>available: {{isAvailable}}</li>
-  </ul>
+<div appChangeWidth='5px solid green'>
+  <h3>name: {{appMetadata.name}}</h3>
+  <h3>version: {{appMetadata.version}}</h3>
+  <h3>url: {{appMetadata.url}}</h3>
+  <h3>sessionId: {{sessionId}}</h3>
+  <h3>accessToken: {{localStorage.getAccessToken()}}</h3>
+  <h3>refreshToken: {{localStorage.getRefreshToken()}}</h3>
+  <h3>appId: {{appId}}</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">Config options:</div>
+    <div class="panel-body">
+      <ul>
+        <li>Id: {{getConfig().id}}</li>
+        <li>Login: {{getConfig().login}}</li>
+        <li>Email: {{getConfig().email}}</li>
+      </ul>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+          <label for="configkey">Key</label>
+          <input type="text"
+                 class="form-control" id="configkey"
+                 placeholder="key"
+                 #configkey>
+        </div>
+        <div class="form-group">
+          <label for="configvalue">Value</label>
+          <input type="text"
+                 class="form-control" id="configvalue"
+                 placeholder="value"
+                 #configvalue>
+        </div>
+        <button type="button"
+                class="btn btn-primary"
+                (click)='onSetConfigProperty(configkey.value, configvalue.value);
+                    configkey.value="";
+                    configvalue.value="";'>Set Key/Value</button>
+    </div>
+
+  </div>
 </div>
+
