@@ -3,8 +3,9 @@
   <div>
     {{lastChange() | date:'medium'}}
   </div>
-  <div>Total Cost: {{totalCost}}</div>
+  <div>Total Cost: {{totalCost | currency:'USD':'code':'4.2'}}</div>
   <div>Total Quantity: {{totalQuantity}}</div>
+  <app-sort-items [sortOptions]="sortOptions" (sortChange)="onSortChange($event)"></app-sort-items>
   <app-cart-item
     *ngFor="let cartItem of cartItems; trackBy: trackByItems"
     [cartItem] = "cartItem"
