@@ -16,14 +16,16 @@ export class ConfigOptionsService {
   }
 
   setConfigProperty(key: string, value: any): void {
-    if ( key === 'id') {
-      this.config.id = value;
-    }
-    else if ( key === 'email') {
-      this.config.email = value;
-    }
-    else if ( key === 'login') {
-      this.config.login = value;
-    }
+    // можно так
+    this.config[key] = value;
+    // if ( key === 'id') {
+    //   this.config.id = value;
+    // }
+    // else if ( key === 'email') {
+    //   this.config.email = value;
+    // }
+    // else if ( key === 'login') {
+    //   this.config.login = value;
+    // }
   }
 }
