@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {CartItem} from '../model/cartItem';
 import {Product} from '../../products/model/product';
+import {SortOptions} from '../../../shared/models/sort-options';
+import {OrderByPipe} from '../../../shared/pipes/order-by.pipe';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,10 @@ import {Product} from '../../products/model/product';
 export class CartService {
   private cartProducts: Array<CartItem> = [];
 
-  get getProducts(): Array<CartItem> {
+  constructor(private orderByPipe: OrderByPipe) {
+  }
+
+  get getCartProducts(): Array<CartItem> {
     return this.cartProducts;
   }
 
@@ -45,4 +50,7 @@ export class CartService {
     }
   }
 
+  onSortChange(sortOptions: SortOptions): void {
+    this.cartProducts = this.orderByPipe.transform(this.cartProducts, sortOptions);
+  }
 }

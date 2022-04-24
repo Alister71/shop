@@ -2,10 +2,10 @@
   <div class="panel-heading">Product</div>
   <div class="panel-body">
     <ul>
-      <li>Name: {{product.name}}</li>
+      <li>Name: {{product.name | uppercase}}</li>
       <li>Description: {{product.description}}</li>
       <li>Price: {{product.price}}</li>
-      <li>Category: {{product.category}}</li>
+      <li>Category: {{product.category | uppercase}}</li>
       <li>Available: {{product.isAvailable}}</li>
     </ul>
     <button *ngIf="product.isAvailable" class="btn btn-primary" (click)="onAddToCart(product)">Buy</button>

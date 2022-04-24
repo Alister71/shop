@@ -9,7 +9,7 @@ import {CartService} from '../../cart/service/cart.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnChanges  {
-  products!: Array<Product>;
+  products!: Promise<Product[]>;
   @Input()
   owner!: string;
 

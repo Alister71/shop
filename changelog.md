@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [4.0.0] - 2022-04-24
+### Added
+* OrderByPipe was created
+* OrderByPipe was declared in SharedModule
+* OrderByPipe was used to sort data
+### Changed
+* Built-in pipes were applied
+* getProducts() from ProductService was changed to return promise. 
+* async pipe was applied in product-list.component.html to represen+t data from ProductService.
+* modules CommonModule, FormsModule were exported from SharedModule
+
 ## [3.0.0] - 2022-04-16
 ### Added
 * directive ChangeSizeDirective was added

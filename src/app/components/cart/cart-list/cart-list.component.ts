@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {CartService} from '../service/cart.service';
 import {CartItem} from '../model/cartItem';
+import {SortOptions} from '../../../shared/models/sort-options';
 
 @Component({
   selector: 'app-cart-list',
@@ -8,12 +9,15 @@ import {CartItem} from '../model/cartItem';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent {
+  sortOptions: SortOptions = new SortOptions('name', 'asc');
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService
+  ) {
   }
 
   get cartItems(): Array<CartItem> {
-    return this.cartService.getProducts;
+    this.cartService.onSortChange(this.sortOptions);
+    return this.cartService.getCartProducts;
   }
 
   get totalQuantity(): number {
@@ -48,5 +52,9 @@ export class CartListComponent {
 
   lastChange(): Date {
     return new Date();
+  }
+
+  onSortChange(sortOptions: SortOptions): void {
+    this.cartService.onSortChange(sortOptions);
   }
 }

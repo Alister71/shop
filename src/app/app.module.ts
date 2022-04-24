@@ -6,14 +6,14 @@ import { FirstComponent } from './components/first/first.component';
 import {CartModule} from './components/cart/cart.module';
 import {OrdersModule} from './components/orders/orders.module';
 import {ProductsModule} from './components/products/products.module';
-import {SharedModule} from './components/shared/shared.module';
-import {ChangeSizeDirective} from './shared/directives/change-size.directive';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {OrderByPipe} from './shared/pipes/order-by.pipe';
+import {SharedModule} from './shared/shared.modules';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponent,
-    ChangeSizeDirective
+    FirstComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,10 @@ import {ChangeSizeDirective} from './shared/directives/change-size.directive';
     SharedModule,
     OrdersModule,
     ProductsModule,
-    SharedModule
+    NoopAnimationsModule
+  ],
+  providers: [
+    OrderByPipe,
   ],
   bootstrap: [AppComponent]
 })
