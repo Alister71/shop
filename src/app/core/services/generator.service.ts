@@ -16,6 +16,8 @@ export class GeneratorService {
     return result;
   }
 
+  // Есть в JavaScript такое понятие как генератор
+  // он выглядит почти как функция function* NameOfGenerator() {...}
   getNewID(n: number): number {
     let result           = '';
     const characters       = '0123456789';
