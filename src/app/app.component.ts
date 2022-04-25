@@ -1,4 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import type { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,12 @@ export class AppComponent implements AfterViewInit {
   ): void {
     this.owner = ownerField.value;
     this.title.nativeElement.innerText = 'Shop Application, owner: ' + this.owner ;
+  }
+
+  onActivate($event: any, routerOutlet: RouterOutlet): void {
+    console.log('Activated Component', $event, routerOutlet);
+  }
+  onDeactivate($event: any, routerOutlet: RouterOutlet): void {
+    console.log('Deactivated Component', $event, routerOutlet);
   }
 }
