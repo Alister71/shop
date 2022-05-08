@@ -7,7 +7,8 @@ export class Product {
     public description: string,
     public price: number,
     public category: CategoryEnum,
-    public isAvailable: boolean
+    public isAvailable: boolean,
+    public imageUrl: string
   ) {
   }
 }

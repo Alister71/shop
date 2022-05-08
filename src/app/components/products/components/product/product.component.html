@@ -8,6 +8,8 @@
       <li>Category: {{product.category | uppercase}}</li>
       <li>Available: {{product.isAvailable}}</li>
     </ul>
+    <img mat-card-image [src]="product.imageUrl" />
     <button *ngIf="product.isAvailable" class="btn btn-primary" (click)="onAddToCart(product)">Buy</button>
+    <button class="btn btn-warning btn-sm" (click)="onViewProduct()">View</button>
   </div>
 </div>

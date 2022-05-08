@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit{
 
   @Output()
   addToCard: EventEmitter<Product> = new EventEmitter();
+  @Output() viewProduct = new EventEmitter<Product>();
 
   ngOnInit(): void { console.log('ngOnInit'); }
 
@@ -22,4 +23,7 @@ export class ProductComponent implements OnInit{
     this.addToCard.emit(product);
   }
 
+  onViewProduct(): void {
+    this.viewProduct.emit(this.product);
+  }
 }

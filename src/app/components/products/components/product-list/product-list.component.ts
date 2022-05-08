@@ -1,7 +1,8 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {ProductsService} from '../service/products.service';
-import {Product} from '../model/product';
-import {CartService} from '../../cart/service/cart.service';
+import {ProductsService} from '../../service/products.service';
+import {Product} from '../../model/product';
+import {CartService} from '../../../cart/service/cart.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +14,8 @@ export class ProductListComponent implements OnInit, OnChanges  {
   @Input()
   owner!: string;
 
-  constructor(private productService: ProductsService,
+  constructor(private router: Router,
+              private productService: ProductsService,
               private cartService: CartService) {
   }
 
@@ -38,5 +40,10 @@ export class ProductListComponent implements OnInit, OnChanges  {
         console.log(`Is First Change: ${chng.isFirstChange()}`);
       }
     }
+  }
+
+  onViewProduct(product: Product): void {
+    const link = ['/products-list', product.id];
+    this.router.navigate(link);
   }
 }
