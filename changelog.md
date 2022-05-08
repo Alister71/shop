@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * getProducts() from ProductService was changed to return promise. 
 * async pipe was applied in product-list.component.html to represen+t data from ProductService.
 * modules CommonModule, FormsModule were exported from SharedModule
+* Замечаний нет
 
 ## [3.0.0] - 2022-04-16
 ### Added
