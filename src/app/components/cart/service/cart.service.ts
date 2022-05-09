@@ -18,6 +18,13 @@ export class CartService {
   }
 
   public addProductToCard(product: Product): void {
+    const cartItem = this.cartProducts.find(x => x.id === product.id);
+    if (cartItem) {
+      cartItem.addProduct(product);
+      this.cartProducts[this.cartProducts.findIndex(x => x.id === product.id)] = cartItem;
+      return;
+    }
+
     this.cartProducts.push(CartItem.addCartItemByProduct(product));
   }
 
