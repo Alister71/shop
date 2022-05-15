@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {CartService} from '../service/cart.service';
-import {CartItem} from '../model/cartItem';
-import {SortOptions} from '../../../shared/models/sort-options';
+import {CartService} from '../../service/cart.service';
+import {CartItem} from '../../model/cartItem';
+import {SortOptions} from '../../../../shared/models/sort-options';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -11,7 +12,8 @@ import {SortOptions} from '../../../shared/models/sort-options';
 export class CartListComponent {
   sortOptions: SortOptions = new SortOptions('name', 'asc');
 
-  constructor(private cartService: CartService
+  constructor(private cartService: CartService,
+              private router: Router
   ) {
   }
 
@@ -39,11 +41,11 @@ export class CartListComponent {
   }
 
   onQuantityIncrease(cartItem: CartItem): void {
-    cartItem.quantity++;
+    this.cartService.onQuantityIncrease(cartItem);
   }
 
   onQuantityDecrease(cartItem: CartItem): void {
-    cartItem.quantity--;
+    this.cartService.onQuantityDecrease(cartItem);
   }
 
   onDeleteItem(cartItem: CartItem): void {

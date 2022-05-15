@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {PathNotFoundComponent} from './components/path-not-found/path-not-found.component';
-import {CartListComponent} from './components/cart/cart-list/cart-list.component';
-import {FirstComponent} from './components/first/first.component';
+import {LoginComponent} from './components/login/login.component';
 const routes: Routes = [
   {
-    path: 'cart',
-    component: CartListComponent
+    path: '',
+    redirectTo: 'products-list',
+    pathMatch: 'full'
   },
   {
-    path: 'first',
-    component: FirstComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    // The router will match this route if the URL requested
-    // doesn't match any paths for routes defined in our configuration
     path: '**',
     component: PathNotFoundComponent
   }

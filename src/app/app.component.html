@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Shop</a>
+  <a class="navbar-brand" href="#" #appTitle [ngClass]="{m_title:true}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,10 @@
           <a class="nav-link" routerLink="/cart">Cart</a>
         </li>
         <li routerLinkActive="active" class="nav-item">
-          <a class="nav-link" routerLink="/first">First</a>
+          <a class="nav-link" routerLink="/admin">Admin</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/login">Login with Admin Role</a>
         </li>
       </ul>
   </div>

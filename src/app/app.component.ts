@@ -12,7 +12,7 @@ export class AppComponent implements AfterViewInit {
   owner!: string;
 
   ngAfterViewInit(): void {
-    this.title.nativeElement.innerText = 'Shop Application';
+    this.title.nativeElement.innerText = 'Shop';
   }
 
   onSetValues(

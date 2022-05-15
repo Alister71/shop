@@ -5,9 +5,9 @@ enum Locals {
   REFRESH_TOKEN = 'refresh_token'
 }
 
-export const LocalStorageServiceToken = new InjectionToken<LocalStorageService>('LocalStorageService');
+export const LocalStorageServiceToken = new InjectionToken<LocalStorageServiceClass>('LocalStorageServiceToken');
 
-export class LocalStorageService {
+export class LocalStorageServiceClass {
 
   constructor(protected storage: Storage) {
   }

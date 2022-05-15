@@ -5,12 +5,14 @@ import {OrdersModule} from './orders/orders.module';
 import {ProductModule} from './products/product.module';
 import {PathNotFoundComponent} from './path-not-found/path-not-found.component';
 import {ProductListComponent} from './products/components/product-list/product-list.component';
-import {CartListComponent} from './cart/cart-list/cart-list.component';
+import {CartListComponent} from './cart/components/cart-list/cart-list.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     FirstComponent,
-    PathNotFoundComponent
+    PathNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     CartModule,
@@ -20,7 +22,8 @@ import {CartListComponent} from './cart/cart-list/cart-list.component';
   exports: [
     FirstComponent,
     ProductListComponent,
-    CartListComponent
+    CartListComponent,
+    LoginComponent
   ]
 })
 export class ComponentsModule {

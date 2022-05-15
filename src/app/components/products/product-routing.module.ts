@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {ProductListComponent} from './components/product-list/product-list.component';
 import {ProductViewComponent} from './components/product-view/product-view.component';
+import {ProductResolveGuard} from './guards/product-resolve.resolver';
 
 const routes: Routes = [
   {
@@ -9,13 +10,11 @@ const routes: Routes = [
     component: ProductListComponent
   },
   {
-    path: '',
-    redirectTo: 'products-list',
-    pathMatch: 'full'
-  },
-  {
     path: 'products-list/:productID',
-    component: ProductViewComponent
+    component: ProductViewComponent,
+    resolve: {
+      product: ProductResolveGuard
+    }
   }
 ];
 

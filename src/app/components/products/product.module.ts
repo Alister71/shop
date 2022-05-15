@@ -16,8 +16,8 @@ import {MatCardModule} from '@angular/material/card';
   imports: [
     CommonModule,
     FormsModule,
-    ProductRoutingModule,
     MatCardModule,
+    ProductRoutingModule
   ],
   exports: [
     ProductListComponent

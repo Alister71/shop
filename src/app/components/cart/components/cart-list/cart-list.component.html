@@ -13,8 +13,9 @@
     (quantityIncrease)="onQuantityIncrease($event)"
     (deleteItem)="onDeleteItem($event)"
   ></app-cart-item>
-  <section>
+  <div class="btn-section">
     <button class="btn btn-primary" (click)="onClearCart()">Clear Cart</button>
-  </section>
+    <button class="btn btn-link" [routerLink]="['/process-order']">Order</button>
+  </div>
 </div>
 <ng-template #elseBlock>Cart is empty.</ng-template>

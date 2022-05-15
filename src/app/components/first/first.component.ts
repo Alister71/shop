@@ -4,7 +4,7 @@ import {APPLICATION, AppMetadata, DI_APPLICATION} from '../../core/services/cons
 import {GeneratorFactory, IdGeneratorFactory, IdToken, SessionToken} from '../../core/services/generator.factory';
 import {GeneratorService} from '../../core/services/generator.service';
 import {ConfigOptionsService} from '../../core/services/config-options.service';
-import {LocalStorageService, LocalStorageServiceToken} from '../../core/services/local-storage.service';
+import {LocalStorageServiceClass, LocalStorageServiceToken} from '../../core/services/local-storage-service.class';
 import {ConfigModel} from '../../core/models/config-model';
 
 @Component({
@@ -15,7 +15,7 @@ import {ConfigModel} from '../../core/models/config-model';
     {provide: APPLICATION, useValue: DI_APPLICATION},
     {provide: SessionToken, useFactory: GeneratorFactory(15), deps: [GeneratorService]},
     {provide: IdToken, useFactory: IdGeneratorFactory(10), deps: [GeneratorService]},
-    {provide: LocalStorageServiceToken, useValue: new LocalStorageService(window.localStorage)}
+    {provide: LocalStorageServiceToken, useValue: new LocalStorageServiceClass(window.localStorage)}
   ]
 })
 export class FirstComponent implements OnInit {
@@ -31,7 +31,7 @@ export class FirstComponent implements OnInit {
               @Optional() @Inject(IdToken) public appId: number,
               private fs: GeneratorService,
               @Optional() public configOptionsService: ConfigOptionsService,
-              @Optional() @Inject(LocalStorageServiceToken) public localStorage: LocalStorageService) {
+              @Optional() @Inject(LocalStorageServiceToken) public localStorage: LocalStorageServiceClass) {
   }
 
 

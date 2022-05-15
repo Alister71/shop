@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input,  Output} from '@angular/core';
-import {SortOptions} from '../../../shared/models/sort-options';
+import {SortOptions} from '../../../../shared/models/sort-options';
 
 @Component({
   selector: 'app-sort-items',

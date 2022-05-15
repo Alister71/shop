@@ -17,13 +17,4 @@ export class CartItem {
     return new CartItem(product.id, product.name, product.description, product.category, product.price, product.price, 1);
   }
 
-  addProduct(product: Product): void {
-    if (product.id !== this.id) {
-      throw new Error('Invalid product');
-    }
-
-    this.totalPrice += product.price;
-    this.quantity++;
-  }
-
 }

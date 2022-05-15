@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
 import {CartService} from '../../../cart/service/cart.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {ProductsService} from '../../service/products.service';
-import {map, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-view',
@@ -16,26 +16,13 @@ export class ProductViewComponent implements OnInit {
               private productsService: ProductsService,
               private route: ActivatedRoute) { console.log('constructor'); }
   product!: Product;
+  originalProduct: Product;
 
   ngOnInit(): void {
-// it is not necessary to save subscription to route.paramMap
-// when router destroys this component, it handles subscriptions automatically
-    const observer = {
-      next: (product: Product) => (this.product = { ...product }),
-      error: (err: any) => console.log(err)
-    };
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) =>
-// notes about "!"
-// params.get() returns string | null, but getTask takes string | number
-// in this case taskID is a path param and can not be null
-            this.productsService.getProduct(params.get('productID'))
-        ), // transform undefined => {}
-        map(el => el ? el : {} as Product)
-      )
-      .subscribe(observer);
-
+    this.route.data.pipe(map(data => data.product)).subscribe((product: Product) => {
+      this.product = { ...product };
+      this.originalProduct = { ...product };
+    });
   }
 
   onAddToCart(product: Product): void {

@@ -8,6 +8,8 @@ import {SharedModule} from './shared/shared.modules';
 import {ComponentsModule} from './components/components.module';
 import { Router } from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
+import { AdminModule } from './admin/admin.module';
+import {LocalStorageService, StorageService} from './core/services/storage.service';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,12 @@ import {AppRoutingModule} from './app-routing.module';
     SharedModule,
     ComponentsModule,
     NoopAnimationsModule,
+    AdminModule,
     AppRoutingModule
   ],
   providers: [
     OrderByPipe,
+    {provide: LocalStorageService, useValue: new StorageService(window.localStorage)},
   ],
   bootstrap: [AppComponent]
 })

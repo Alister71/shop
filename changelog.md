@@ -5,6 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [5.0.0] - 2022-05-15
+### Added
+* product list was made start component
+* ProductViewComponent was added
+* Routing was added for Product, Admin, Cart and Order modules
+* Order Component  ProcessOrderComponent was added with CanActivate Guard for order when cart is empty
+* Admin module was added with canActivate Guard
+* Login Page was added to implement getting Admin Role
+* A few routing modules were used
+* CanDeactivate Guard was added
+* Resolver was added
+* Local storage was used to keep cart items
+### Changed
+* angular was upgraded
+* bootstrap was added
+* rxjs was upgraded
+* product list was changed
+* cart component was changed
+
 ## [4.0.0] - 2022-04-24
 ### Added
 * OrderByPipe was created

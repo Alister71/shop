@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CategoryEnum} from '../../first/category.enum';
 import {Product} from '../model/product';
+import {from, Observable} from 'rxjs';
 
 const productArray =  [
   new Product(1, 'Lipton Iced Tea',
@@ -73,6 +74,13 @@ export class ProductsService {
       .then(products => products.find(product => product.id === +id))
       .catch(() => Promise.reject('Error in getProduct method'));
   }
+
+  getProductObs(id: NonNullable<Product['id']> | string ): Observable<Product | undefined> {
+    return from(this.getProducts()
+      .then(products => products.find(product => product.id === +id))
+      .catch(() => Promise.reject('Error in getProduct method')));
+  }
+
   createProduct(product: Product): void {
     productArray.push(product);
   }
