@@ -1,0 +1,21 @@
+<div *ngIf="cartNotEmpty(); else elseBlock">
+  <div>Cart Items</div>
+  <div>
+    {{lastChange() | date:'medium'}}
+  </div>
+  <div>Total Cost: {{totalCost | currency:'USD':'code':'4.2'}}</div>
+  <div>Total Quantity: {{totalQuantity}}</div>
+  <app-sort-items [sortOptions]="sortOptions" (sortChange)="onSortChange($event)"></app-sort-items>
+  <app-cart-item
+    *ngFor="let cartItem of cartItems; trackBy: trackByItems"
+    [cartItem] = "cartItem"
+    (quantityDecrease)="onQuantityDecrease($event)"
+    (quantityIncrease)="onQuantityIncrease($event)"
+    (deleteItem)="onDeleteItem($event)"
+  ></app-cart-item>
+  <div class="btn-section">
+    <button class="btn btn-primary" (click)="onClearCart()">Clear Cart</button>
+    <button class="btn btn-link" [routerLink]="['/process-order']">Order</button>
+  </div>
+</div>
+<ng-template #elseBlock>Cart is empty.</ng-template>

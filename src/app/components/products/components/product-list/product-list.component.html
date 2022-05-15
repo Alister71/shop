@@ -1,0 +1,6 @@
+<app-product
+  *ngFor="let product of products | async"
+  [product]="product"
+  (addToCard)="onAddToCart($event)"
+  (viewProduct)="onViewProduct($event)">
+</app-product>

@@ -1,12 +1,32 @@
-<app-first></app-first>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#" #appTitle [ngClass]="{m_title:true}"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li routerLinkActive="active" class="nav-item active">
+          <a class="nav-link" routerLink="/products-list">Products</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/cart">Cart</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/admin">Admin</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/login">Login with Admin Role</a>
+        </li>
+      </ul>
+  </div>
+</nav>
 
-<h1 #appTitle [ngClass]="{m_title:true}"></h1>
-<label>Owner: </label>
-<input type="text"
-       #ownerField
-       (keyup)="onSetValues(ownerField)"
-       [ngClass]="{m_title:true}"/>
-<h1 [ngClass]="{m_title:false}">Product list</h1>
-<app-product-list [owner]="owner"></app-product-list>
-<h1>Cart list</h1>
-<app-cart-list></app-cart-list>
+<div class="container">
+  <div class="col-md-10">
+    <router-outlet
+      #routerOutlet="outlet"
+      (activate)='onActivate($event, routerOutlet)'
+      (deactivate)='onDeactivate($event, routerOutlet)'>
+    </router-outlet>
+  </div>
+</div>
