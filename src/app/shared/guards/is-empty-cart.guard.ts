@@ -14,3 +14,7 @@ export class IsEmptyCartGuard implements CanActivate {
     return this.router.parseUrl('/products-list');
   }
 }
+// У вас есть две папки с guards
+// core/guards
+// shared/guards
+
