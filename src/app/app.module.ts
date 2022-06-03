@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
 import {LocalStorageService, StorageService} from './core/services/storage.service';
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './core/interceptors';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import {LocalStorageService, StorageService} from './core/services/storage.servi
   ],
   imports: [
     BrowserModule,
+    // import HttpClientModule after BrowserModule
+    HttpClientModule,
     SharedModule,
     ComponentsModule,
     NoopAnimationsModule,
@@ -26,6 +30,7 @@ import {LocalStorageService, StorageService} from './core/services/storage.servi
   providers: [
     OrderByPipe,
     {provide: LocalStorageService, useValue: new StorageService(window.localStorage)},
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

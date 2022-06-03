@@ -1,55 +1,86 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from '../../service/cart.service';
 import {CartItem} from '../../model/cartItem';
 import {SortOptions} from '../../../../shared/models/sort-options';
 import { Router } from '@angular/router';
+import {CartObservableService} from '../../service/cart-observable.service';
+import {Observable} from 'rxjs';
+import {concatAll, map, mergeMap} from 'rxjs/operators';
+import {AutoUnsubscribe} from '../../../../core/decorators/auto-unsubscribe.decorator';
+import {Location} from '@angular/common';
+import {OrderByPipe} from '../../../../shared/pipes/order-by.pipe';
+import {AppSettingsService} from '../../../../core/services/app-settings.service';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent {
-  sortOptions: SortOptions = new SortOptions('name', 'asc');
+@AutoUnsubscribe()
+export class CartListComponent implements OnInit {
+  sortOptions!: SortOptions;
+  cartProducts$: Observable<Array<CartItem>>;
+  totalC: number;
 
   constructor(private cartService: CartService,
-              private router: Router
+              private cartObservableService: CartObservableService,
+              private location: Location,
+              private router: Router,
+              private orderByPipe: OrderByPipe,
+              private appSettingsService: AppSettingsService
   ) {
   }
 
-  get cartItems(): Array<CartItem> {
-    this.cartService.onSortChange(this.sortOptions);
-    return this.cartService.getCartProducts;
+  ngOnInit(): void {
+    this.sortOptions = this.appSettingsService.getSortOptions();
+    this.cartProducts$ = this.getSortChange(this.sortOptions);
   }
 
-  get totalQuantity(): number {
-    return this.cartService.totalQuantity;
+  totalCost(items: CartItem[]): number {
+    return items?.reduce((sum: number, current: CartItem) => sum + current.price * current.quantity, 0);
   }
 
-  get totalCost(): number {
-    return this.cartService.totalCost;
+  totalQuantity(items: CartItem[]): number {
+    return items?.reduce((sum: number, current: CartItem) => sum + current.quantity, 0);
   }
 
-  cartNotEmpty(): boolean {
-    return !this.cartService.isEmptyCart();
-  }
-
-  trackByItems(index: number, item: CartItem): string { return item.name; }
+  trackByItems(index: number, item: CartItem): number | null { return item.id; }
 
   onClearCart(): void {
-    this.cartService.removeAllProducts();
+    const observer = {
+      next: items => {
+        this.cartProducts$ = this.cartObservableService.getCartProducts();
+        location.reload();
+      },
+      error: (err: any) => console.log(err)
+    };
+
+    const subscription = this.cartProducts$.pipe(mergeMap(items => items.map((item) =>
+      this.cartObservableService.deleteCartItem(item))),
+      concatAll())
+      .subscribe(observer);
   }
 
   onQuantityIncrease(cartItem: CartItem): void {
-    this.cartService.onQuantityIncrease(cartItem);
+    const observer = {
+      error: (err: any) => console.log(err)
+    };
+    cartItem.totalPrice += cartItem.price;
+    cartItem.quantity++;
+    this.cartObservableService.updateCartProduct(cartItem).subscribe(observer);
   }
 
   onQuantityDecrease(cartItem: CartItem): void {
-    this.cartService.onQuantityDecrease(cartItem);
+    const observer = {
+      error: (err: any) => console.log(err)
+    };
+    cartItem.totalPrice -= cartItem.price;
+    cartItem.quantity--;
+    this.cartObservableService.updateCartProduct(cartItem).subscribe(observer);
   }
 
   onDeleteItem(cartItem: CartItem): void {
-    this.cartService.deleteItem(cartItem);
+    this.cartProducts$ = this.cartObservableService.deleteCartProduct(cartItem);
   }
 
   lastChange(): Date {
@@ -57,6 +88,13 @@ export class CartListComponent {
   }
 
   onSortChange(sortOptions: SortOptions): void {
-    this.cartService.onSortChange(sortOptions);
+    this.cartProducts$ = this.getSortChange(this.sortOptions);
   }
+
+  getSortChange(sortOptions: SortOptions): Observable<CartItem[]> {
+    return  this.cartObservableService.getCartProducts().pipe(
+      map((preSortedProducts: CartItem[]) => this.orderByPipe.transform(preSortedProducts, sortOptions)));
+  }
+
+
 }

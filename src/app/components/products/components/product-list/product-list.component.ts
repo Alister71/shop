@@ -1,31 +1,34 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import {ProductsService} from '../../service/products.service';
 import {Product} from '../../model/product';
-import {CartService} from '../../../cart/service/cart.service';
 import {Router} from '@angular/router';
+import {ProductsPromiseService} from '../../service/products-promise.service';
+import {CartObservableService} from '../../../cart/service/cart-observable.service';
+import {Subscription} from 'rxjs';
+import {AutoUnsubscribe} from '../../../../core/decorators/auto-unsubscribe.decorator';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
+@AutoUnsubscribe()
 export class ProductListComponent implements OnInit, OnChanges  {
   products!: Promise<Product[]>;
   @Input()
   owner!: string;
+  private sub!: Subscription;
 
   constructor(private router: Router,
-              private productService: ProductsService,
-              private cartService: CartService) {
+              private productsPromiseService: ProductsPromiseService,
+              private cartObservableService: CartObservableService) {
   }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
+    this.products = this.productsPromiseService.getProducts();
   }
 
   onAddToCart(product: Product): void {
-    console.log('Product was bought!', product);
-    this.cartService.addProductToCard(product);
+    this.cartObservableService.onAddToCart(product);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
