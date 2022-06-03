@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [6.0.0] - 2022-06-03
+### Added
+* json server was added to the project
+* services ProductsPromiseService and CartObservableService with HttpClient were added
+* TimingInterceptor, /core/interceptors/timing.interceptor.ts, which logs request duration was added. 
+* Filtering was added in timing.interceptor.ts, to get duration only for some requests. 
+* Array httpInterceptorProviders was created and interceptor was added into it as multiprovider with token HTTP_INTERCEPTORS in /core/interceptors/index.ts.
+* Service AppSettings, /core/services/app-settings.service.ts, was added, which loads SortOptions either from local storage or from file assets/app-settings.json.
+
 ## [5.0.0] - 2022-05-15
 ### Added
 * product list was made start component

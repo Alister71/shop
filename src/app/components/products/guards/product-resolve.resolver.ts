@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Router, } from '@angular/router';
 import type { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import {Product} from '../model/product';
-import {ProductsService} from '../service/products.service';
 import {EMPTY,  Observable, of, switchMap} from 'rxjs';
+import {ProductsPromiseService} from '../service/products-promise.service';
 @Injectable({
   providedIn: 'any'
 })
 export class ProductResolveGuard implements Resolve<Product> {
   constructor(
-    private productArrayService: ProductsService,
+    private productsPromiseService: ProductsPromiseService,
     private router: Router
   ) {
   }
@@ -22,7 +22,7 @@ export class ProductResolveGuard implements Resolve<Product> {
     // tslint:disable-next-line:no-non-null-assertion
     const id = route.paramMap.get('productID')!;
     console.log(id );
-    return this.productArrayService.getProductObs(id).pipe(
+    return this.productsPromiseService.getProductObs(id).pipe(
       switchMap((product: Product) => {
         if (product) {
           return of(product);

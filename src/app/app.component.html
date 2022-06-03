@@ -24,9 +24,7 @@
 <div class="container">
   <div class="col-md-10">
     <router-outlet
-      #routerOutlet="outlet"
-      (activate)='onActivate($event, routerOutlet)'
-      (deactivate)='onDeactivate($event, routerOutlet)'>
+      #routerOutlet="outlet">
     </router-outlet>
   </div>
 </div>

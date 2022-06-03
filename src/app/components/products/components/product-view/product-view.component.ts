@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
-import {CartService} from '../../../cart/service/cart.service';
 import {ActivatedRoute} from '@angular/router';
-import {ProductsService} from '../../service/products.service';
 import {map} from 'rxjs/operators';
+import {CartObservableService} from '../../../cart/service/cart-observable.service';
 
 @Component({
   selector: 'app-product-view',
@@ -12,8 +11,7 @@ import {map} from 'rxjs/operators';
 })
 export class ProductViewComponent implements OnInit {
 
-  constructor(private cartService: CartService,
-              private productsService: ProductsService,
+  constructor(private cartObservableService: CartObservableService,
               private route: ActivatedRoute) { console.log('constructor'); }
   product!: Product;
   originalProduct: Product;
@@ -26,7 +24,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   onAddToCart(product: Product): void {
-    this.cartService.addProductToCard(product);
+    this.cartObservableService.onAddToCart(product);
   }
 
 }

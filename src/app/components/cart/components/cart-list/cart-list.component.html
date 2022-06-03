@@ -1,13 +1,14 @@
-<div *ngIf="cartNotEmpty(); else elseBlock">
+<div *ngIf="cartProducts$ | async as items">
+<div *ngIf="(items).length > 0; else elseBlock">
   <div>Cart Items</div>
   <div>
     {{lastChange() | date:'medium'}}
   </div>
-  <div>Total Cost: {{totalCost | currency:'USD':'code':'4.2'}}</div>
-  <div>Total Quantity: {{totalQuantity}}</div>
+  <div>Total Cost: {{totalCost(items) | currency:'USD':'code':'4.2'}}</div>
+  <div>Total Quantity: {{totalQuantity(items)}}</div>
   <app-sort-items [sortOptions]="sortOptions" (sortChange)="onSortChange($event)"></app-sort-items>
   <app-cart-item
-    *ngFor="let cartItem of cartItems; trackBy: trackByItems"
+    *ngFor="let cartItem of items ; trackBy: trackByItems"
     [cartItem] = "cartItem"
     (quantityDecrease)="onQuantityDecrease($event)"
     (quantityIncrease)="onQuantityIncrease($event)"
@@ -19,3 +20,5 @@
   </div>
 </div>
 <ng-template #elseBlock>Cart is empty.</ng-template>
+</div>
+
