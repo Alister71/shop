@@ -12,6 +12,8 @@ import { AdminModule } from './admin/admin.module';
 import {LocalStorageService, StorageService} from './core/services/storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './core/interceptors';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ValidatorsModule } from './validators/validators.module';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,16 @@ import { httpInterceptorProviders } from './core/interceptors';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     // import HttpClientModule after BrowserModule
     HttpClientModule,
     SharedModule,
     ComponentsModule,
     NoopAnimationsModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ValidatorsModule
   ],
   providers: [
     OrderByPipe,
