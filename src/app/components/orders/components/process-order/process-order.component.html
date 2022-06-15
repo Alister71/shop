@@ -54,19 +54,36 @@
 </span>
           </div>
         </div>
-        <div class="form-group"
-             [ngClass]="{'has-error': isShowValidationMessage('phone') }">
-          <label class="col-md-2 control-label"
-                 for="phoneId">Phone</label>
-          <div class="col-md-8">
-            <input class="form-control"
-                   id="phoneId"
-                   type="tel"
-                   placeholder="Phone"
-                   formControlName="phone"/>
-            <span class="help-block" *ngIf=" isShowValidationMessage('phone') ">
-{{validationMessagesMap.get('phone').message}}
-</span>
+
+        <div formArrayName="phones">
+          <div *ngFor="let phone of phones.controls; let j = index" [formGroupName]="j">
+            <div class="form-group"
+                 [ngClass]="{'has-error': isShowValidationMessage('phone') }">
+              <label class="col-md-2 control-label"
+                     for="{{'phoneId' + j}}">Phone</label>
+              <div class="col-md-8">
+                <input class="form-control"
+                       id="{{'phoneId' + j}}"
+                       type="tel"
+                       placeholder="Phone"
+                       formControlName="phone"/>
+                <span class="help-block" *ngIf=" isShowValidationMessage('phone') ">
+                    {{validationMessagesMap.get('phone').message}}
+                </span>
+              </div>
+              <div class="col-md-1 text-right" *ngIf="j>0">
+                <button class="btn btn-danger" (click)="onRemovePhone(j)">X</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+              <button class="btn btn-primary"
+                      type="button"
+                      (click)="onAddPhone()">
+                Add Another Phone
+              </button>
+            </div>
           </div>
         </div>
 
@@ -95,12 +112,12 @@
                         formControlName="address"
               >
               </textarea>
-                  <div class="col-md-1 text-right" *ngIf="i>0">
-                    <button class="btn btn-danger" (click)="onRemoveAddress(i)">X</button>
-                  </div>
                   <span class="help-block" *ngIf=" isShowValidationMessage('address') ">
 {{validationMessagesMap.get('address').message}}
 </span>
+                </div>
+                <div class="col-md-1 text-right" *ngIf="i>0">
+                  <button class="btn btn-danger" (click)="onRemoveAddress(i)">X</button>
                 </div>
               </div>
             </div>

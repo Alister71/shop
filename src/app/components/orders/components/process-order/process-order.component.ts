@@ -69,10 +69,28 @@ export class ProcessOrderComponent implements OnInit, OnDestroy  {
       email: ['',
           [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'), Validators.email]
       ],
-      phone: '',
+      phones: this.fb.array([this.buildPhone()]),
       sendProducts: false,
       addresses: this.fb.array([this.buildAddress()])
     });
+  }
+
+  private buildPhone(): FormGroup {
+    return this.fb.group({
+      phone: ''
+    });
+  }
+
+  get phones(): FormArray {
+    return this.userForm.get('phones') as FormArray;
+  }
+
+  onAddPhone(): void {
+    this.phones.push(this.buildPhone());
+  }
+
+  onRemovePhone(index: number): void {
+    this.phones.removeAt(index);
   }
 
   private buildAddress(): FormGroup {
