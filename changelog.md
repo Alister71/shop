@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Filtering was added in timing.interceptor.ts, to get duration only for some requests. 
 * Array httpInterceptorProviders was created and interceptor was added into it as multiprovider with token HTTP_INTERCEPTORS in /core/interceptors/index.ts.
 * Service AppSettings, /core/services/app-settings.service.ts, was added, which loads SortOptions either from local storage or from file assets/app-settings.json.
+Замечаний нет
 
 ## [5.0.0] - 2022-05-15
 ### Added
