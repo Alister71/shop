@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [8.0.0] - 2022-06-15
+### Added
+* ProcessOrderComponent was implemented as reactive form according to the requirements
+* Validator is implemented ofr first name
+* Validator directive was implemented for email
+* Validation messages are composed inside the component
+
 ## [6.0.0] - 2022-06-03
 ### Added
 * json server was added to the project

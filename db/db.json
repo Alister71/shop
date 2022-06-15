@@ -26,6 +26,15 @@
       "price": 14.46,
       "totalPrice": 28.92,
       "quantity": 2
+    },
+    {
+      "id": 1,
+      "name": "Lipton Iced Tea",
+      "description": "Lipton Iced Southern Sweet Tea K-Cup Pods make a rich, aromatic cup of sweet iced tea you can enjoy anytime. This iced black tea is a classic, made from 100% real tea leaves, carefully selected and fresh-pressed to capture as much real tea-leaf taste as possible. A Lipton Iced Tea K-Cup is the most convenient way to enjoy the perfect cup of iced tea. Sip and let the refreshing taste of Lipton Iced Tea brighten your day!",
+      "category": "Food",
+      "price": 26.35,
+      "totalPrice": 26.35,
+      "quantity": 1
     }
   ],
   "products": [

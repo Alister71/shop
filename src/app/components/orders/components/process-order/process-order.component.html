@@ -1,1 +1,121 @@
-<p>process-order works!</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Process Order!
+  </div>
+
+  <div class="panel-body">
+    <form class="form-horizontal" (ngSubmit)="onSave()"
+          [formGroup]="userForm">
+      <fieldset>
+        <div class="form-group" [ngClass]="{'has-error': isShowValidationMessage('firstName') }">
+          <label class="col-md-2 control-label"
+                 for="firstNameId">First Name</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="firstNameId"
+                   type="text"
+                   placeholder="First Name (required)"
+                   formControlName="firstName"
+            />
+            <span class="help-block" *ngIf=" isShowValidationMessage('firstName') ">
+{{validationMessagesMap.get('firstName').message}}
+</span>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': isShowValidationMessage('lastName') }">
+          <label class="col-md-2 control-label"
+                 for="lastNameId">Last Name</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="lastNameId"
+                   type="text"
+                   placeholder="Last Name"
+                   formControlName="lastName"/>
+          </div>
+          <span class="help-block" *ngIf=" isShowValidationMessage('lastName') ">
+{{validationMessagesMap.get('lastName').message}}
+</span>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error': isShowValidationMessage('email') }">
+          <label class="col-md-2 control-label"
+                 for="emailId">Email</label>
+
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="emailId"
+                   type="email"
+                   placeholder="Email (required)"
+                   formControlName="email"
+                   appEmail/>
+            <span class="help-block" *ngIf=" isShowValidationMessage('email') ">
+{{validationMessagesMap.get('email').message}}
+</span>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error': isShowValidationMessage('phone') }">
+          <label class="col-md-2 control-label"
+                 for="phoneId">Phone</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="phoneId"
+                   type="tel"
+                   placeholder="Phone"
+                   formControlName="phone"/>
+            <span class="help-block" *ngIf=" isShowValidationMessage('phone') ">
+{{validationMessagesMap.get('phone').message}}
+</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-1 col-md-8 checkbox">
+            <label>
+              <input id="sendProductsId"
+                     type="checkbox" formControlName="sendProducts"/>
+              Send me your products
+            </label>
+          </div>
+        </div>
+
+
+        <div *ngIf="sendProducts.value">
+          <div class="form-group" [ngClass]="{'has-error': isShowValidationMessage('address') }">
+            <label class="col-md-2 control-label"
+                   for="addressId">Address</label>
+            <div class="col-md-8">
+              <textarea class="md-textarea form-control"
+                     id="addressId"
+                     type="text"
+                     placeholder={{placeholder.address}}
+                     formControlName="address"
+              ></textarea>
+              <span class="help-block" *ngIf=" isShowValidationMessage('address') ">
+{{validationMessagesMap.get('address').message}}
+</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    [disabled]="!userForm.valid"
+                                    type="submit">
+                                Save
+                            </button>
+                        </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<br>Dirty: {{ userForm.dirty }}
+<br>Touched: {{ userForm.touched }}
+<br>Valid: {{ userForm.valid }}
+<br>Value: {{ userForm.value | json }}
+<br>Form Status: {{userForm.status }}
