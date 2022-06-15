@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Validator is implemented ofr first name
 * Validator directive was implemented for email
 * Validation messages are composed inside the component
-* A few addresses can be added and removed
+* A few addresses and phones can be added and removed
 
 ## [6.0.0] - 2022-06-03
 ### Added
