@@ -5,7 +5,7 @@ import {
   FormBuilder,
   FormControl,
   AbstractControl,
-  Validators
+  Validators, FormArray
 } from '@angular/forms';
 import {Subscription} from 'rxjs';
 
@@ -71,10 +71,27 @@ export class ProcessOrderComponent implements OnInit, OnDestroy  {
       ],
       phone: '',
       sendProducts: false,
+      addresses: this.fb.array([this.buildAddress()])
+    });
+  }
+
+  private buildAddress(): FormGroup {
+    return this.fb.group({
       address: ''
     });
   }
 
+  get addresses(): FormArray {
+    return this.userForm.get('addresses') as FormArray;
+  }
+
+  onAddAddress(): void {
+    this.addresses.push(this.buildAddress());
+  }
+
+  onRemoveAddress(index: number): void {
+    this.addresses.removeAt(index);
+  }
 
   ngOnInit(): void {
     this.buildForm();
