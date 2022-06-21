@@ -75,6 +75,8 @@ export class ProcessOrderComponent implements OnInit, OnDestroy  {
     });
   }
 
+// тут можно возвращать FormControl, так как это одно поле ввода
+// и использовать this.fb.control(...)
   private buildPhone(): FormGroup {
     return this.fb.group({
       phone: ''
